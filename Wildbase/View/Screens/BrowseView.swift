@@ -19,7 +19,9 @@ struct BrowseView: View {
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 
                 ForEach(self.animals) { animal in
-                    AnimalListItemView(animal: animal)
+                    NavigationLink(destination: AnimalDetailView(animal: animal)) {
+                        AnimalListItemView(animal: animal)
+                    }
                 }
             }
             .navigationTitle("Wildbase")
