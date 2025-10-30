@@ -1,0 +1,53 @@
+name: iOS CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build iOS App
+    runs-on: macos-14
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Xcode 16.2
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '16.2'
+        
+    - name: Build for iOS
+      run: |
+        xcodebuild clean build \
+          -project "Wildbase.xcodeproj" \
+          -scheme "Wildbase" \
+          -destination "generic/platform=iOS" \
+          CODE_SIGNING_ALLOWED=NO \
+          CODE_SIGNING_REQUIRED=NO
+
+  test:
+    name: Run Tests
+    runs-on: macos-14
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Xcode 16.2
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '16.2'
+        
+    - name: Run tests
+      run: |
+        xcodebuild test \
+          -project "Wildbase.xcodeproj" \
+          -scheme "Wildbase" \
+          -destination "platform=iOS Simulator,name=iPhone 16,OS=18.2" \
+          CODE_SIGNING_ALLOWED=NO \
+          CODE_SIGNING_REQUIRED=NO
+
