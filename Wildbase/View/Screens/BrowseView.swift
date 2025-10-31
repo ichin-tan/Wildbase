@@ -24,6 +24,7 @@ struct BrowseView: View {
                     }
                 }
             }
+            .listStyle(.plain)
             .navigationTitle("Wildbase")
             .navigationBarTitleDisplayMode(.large)
         }
