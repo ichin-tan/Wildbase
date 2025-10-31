@@ -16,7 +16,7 @@ struct VideoListView: View {
         NavigationView {
             List {
                 ForEach(videos) { video in
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: VideoView(video: video)) {
                         VideoListItemView(video: video)
                     }
                 }
