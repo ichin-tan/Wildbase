@@ -26,32 +26,56 @@ struct AnimalDetailView: View {
                             .frame(height: 5)
                             .offset(y: 20)
                     )
-                    .padding(.top)
+                    .padding()
                 
                 Text(animal.headline)
                     .font(.headline)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.accent)
                     .padding(.horizontal)
-                    .padding(.top, 10)
                 
                 Group {
-                    HStack(spacing: 10) {
-                        Image(systemName: "photo.on.rectangle.angled")
-                            .font(.title)
-                            .foregroundColor(.accent)
-                        
-                        Text("Pictures")
-                            .font(.title)
-                            .fontWeight(.bold)
-                    }
                     
-                    InsertPictureView(animal: self.animal)
-                        .padding(.horizontal)
+                    InsetTitleView(image: "photo.on.rectangle.angled", text: "Pictures")
+                    
+                    InsetPictureView(animal: self.animal)
+                    
                 }
-                .padding(.top, 20)
+                .padding()
                 
+                Group {
+                    
+                    InsetTitleView(image: "questionmark.circle", text: "Did you know?")
+                    
+                    InsetFactView(animal: animal)
+                    
+                }
+                .padding()
+
+                Group {
+                    
+                    InsetTitleView(image: "info.circle", text: "All about \(animal.name)")
+                                        
+                    Text(animal.description)
+                        .multilineTextAlignment(.leading)
+                        .layoutPriority(1)
+                    
+                }
+                .padding()
                 
+                Group {
+                    InsetTitleView(image: "map", text: "National Parks")
+                    
+                    InsetMapView()
+                }
+                .padding()
+                
+                Group {
+                    InsetTitleView(image: "books.vertical", text: "Learn more")
+                    
+                    WebLinkView(animal: self.animal)
+                }
+                .padding()
             }
             .navigationTitle("Learn about \(animal.name)")
             .navigationBarTitleDisplayMode(.inline)

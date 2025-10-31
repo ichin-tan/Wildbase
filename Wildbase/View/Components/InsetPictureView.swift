@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InsertPictureView: View {
+struct InsetPictureView: View {
     
     let animal: Animal
     
@@ -31,6 +31,6 @@ struct InsertPictureView_Previews: PreviewProvider {
         
         let animals: [Animal] = Bundle.main.decode("animals.json") ?? []
         
-        InsertPictureView(animal: animals[0])
+        InsetPictureView(animal: animals[0])
     }
 }
