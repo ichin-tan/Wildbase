@@ -38,10 +38,10 @@ struct MotionAnimationView: View {
             ZStack {
                 ForEach(0...numberOfCircles, id: \.self) { _ in
                     Circle()
-                        .foregroundColor(.accent)
+                        .foregroundColor(.gray)
                         .opacity(0.15)
                         .frame(width: self.getRandomSize(), height: self.getRandomSize(), alignment: .center)
-                        .scaleEffect(getRandomScale())
+                        .scaleEffect(isAnimating ? getRandomScale() : 1)
                         .position(x: self.getRandomCoordinate(max: geometry.size.width), y: self.getRandomCoordinate(max: geometry.size.height)
                         )
                         .animation(.interpolatingSpring(stiffness: 0.5, damping: 0.5).repeatForever().speed(getRandomSpeed()).delay(getRandomDelay()), value: isAnimating)
